@@ -1,4 +1,4 @@
-#define RST_PIN 0  // P5 = PB0 su Digispark
+#define RST_PIN 5  // P5 = PB5 su Digispark
 #define LED_PIN 1
 
 void setup() {
