@@ -44,7 +44,7 @@ Il Digispark è alimentato direttamente dall'ESP32 tramite il pin 3V3.
 ## Codice ATtiny85 (Digispark)
 
 ```cpp
-#define RST_PIN 0  // P5 = PB0 su Digispark
+#define RST_PIN 5  // P5 = PB5 su Digispark
 #define LED_PIN 1
 
 void setup() {
