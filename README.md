@@ -29,7 +29,7 @@ Il Digispark è alimentato direttamente dall'ESP32 tramite il pin 3V3.
 |------|-----|---|------|
 | 🔴 Alimentazione | Heltec **3V3** | Digispark **5V** | Bypassa il regolatore interno |
 | ⚫ Massa | Heltec **GND** | Digispark **GND** | Massa comune obbligatoria |
-| 🔵 Segnale reset | Digispark **P5** | Heltec **RST** | Impulso LOW per 300ms |
+| 🔵 Segnale reset | Digispark **P2** | Heltec **RST** | Impulso LOW per 300ms |
 
 > ⚠️ **Importante**: collegare 3V3 al pin `5V` del Digispark (NON a `VIN`).
 > Il pin VIN è pensato per tensioni 7-35V e non funziona correttamente con 3.3V.
@@ -37,14 +37,14 @@ Il Digispark è alimentato direttamente dall'ESP32 tramite il pin 3V3.
 ## Come funziona
 
 1. Il Digispark si avvia e attende 12 ore
-2. Porta P5 in `OUTPUT LOW` → il pin RST dell'ESP32 va a GND → **reset**
-3. Dopo 300ms porta P5 in `INPUT` (alta impedenza) → il pull-up interno riporta RST a 3.3V → **ESP32 riparte**
+2. Porta P2 in `OUTPUT LOW` → il pin RST dell'ESP32 va a GND → **reset**
+3. Dopo 300ms porta P2 in `INPUT` (alta impedenza) → il pull-up interno riporta RST a 3.3V → **ESP32 riparte**
 4. Il ciclo si ripete ogni 12 ore
 
 ## Codice ATtiny85 (Digispark)
 
 ```cpp
-#define RST_PIN 5  // P5 = PB5 su Digispark
+#define RST_PIN 2  // P2
 #define LED_PIN 1
 
 void setup() {
@@ -58,7 +58,7 @@ void loop() {
   pinMode(RST_PIN, OUTPUT);
   digitalWrite(RST_PIN, LOW);   // Porta RST a GND → reset ESP32
   digitalWrite(LED_PIN, HIGH);  // LED acceso durante reset
-  delay(300);                   // 300ms sufficienti
+  delay(100);                   // 300ms sufficienti
 
   // Rilascia
   pinMode(RST_PIN, INPUT);      // Alta impedenza → RST risale grazie al pull-up
