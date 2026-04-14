@@ -1,4 +1,4 @@
-#define RST_PIN 5  // P5 = PB5 su Digispark
+#define RST_PIN 2  // P2 
 #define LED_PIN 1
 
 void setup() {
@@ -12,7 +12,7 @@ void loop() {
   pinMode(RST_PIN, OUTPUT);
   digitalWrite(RST_PIN, LOW);  // EN → GND
   digitalWrite(LED_PIN, HIGH);
-  delay(300);
+  delay(100);
 
   // Release
   pinMode(RST_PIN, INPUT);     // EN risale
